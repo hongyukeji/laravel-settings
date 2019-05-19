@@ -15,8 +15,8 @@
 
 namespace Hongyukeji\LaravelSettings;
 
+use Hongyukeji\LaravelSettings\Settings\Console\SettingsTableCommand;
 use Illuminate\Support\Collection;
-use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\ServiceProvider;
 
 class SettingsServiceProvider extends ServiceProvider
@@ -26,10 +26,6 @@ class SettingsServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__ . '/config/settings.php' => config_path('settings.php'),
         ], 'config');
-
-        $this->publishes([
-            __DIR__.'/../database/migrations/create_permission_tables.php.stub' => $this->getMigrationFileName($filesystem),
-        ], 'migrations');
     }
 
     public function register()
@@ -38,19 +34,16 @@ class SettingsServiceProvider extends ServiceProvider
     }
 
     /**
-     * Returns existing migration file if found, else uses the current timestamp.
+     * Register the settings related console commands.
      *
-     * @param Filesystem $filesystem
-     * @return string
+     * @return void
      */
-    protected function getMigrationFileName(Filesystem $filesystem): string
+    protected function registerCommands()
     {
-        $timestamp = date('Y_m_d_His');
+        $this->app->singleton('command.settings:create-table', function ($app) {
+            return new SettingsTableCommand($app['files'], $app['composer']);
+        });
 
-        return Collection::make($this->app->databasePath().DIRECTORY_SEPARATOR.'migrations'.DIRECTORY_SEPARATOR)
-            ->flatMap(function ($path) use ($filesystem) {
-                return $filesystem->glob($path.'*_create_permission_tables.php');
-            })->push($this->app->databasePath()."/migrations/{$timestamp}_create_permission_tables.php")
-            ->first();
+        $this->commands('command.settings:create-table');
     }
 }
