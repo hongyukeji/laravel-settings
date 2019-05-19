@@ -30,7 +30,7 @@ class SettingsServiceProvider extends ServiceProvider
 
     public function register()
     {
-        //
+        $this->registerCommands();
     }
 
     /**
