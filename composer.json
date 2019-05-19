@@ -23,7 +23,7 @@
                 "Krucas\\Settings\\Providers\\SettingsServiceProvider"
             ],
             "aliases": {
-                "Settings": "Krucas\\Settings\\Facades\\Settings",
+                "Settings": "Krucas\\Settings\\Facades\\Settings"
             }
         }
     }
