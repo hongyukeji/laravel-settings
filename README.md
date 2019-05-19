@@ -14,7 +14,7 @@ $ php artisan vendor:publish --provider='Hongyukeji\LaravelSettings\SettingsServ
 ```
 
 ```shell
-$ php artisan php artisan settings:create-table
+$ php artisan settings:create-table
 ```
 
 ```shell
