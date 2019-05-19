@@ -13,6 +13,14 @@ $ composer require hongyukeji/laravel-settings
 $ php artisan vendor:publish --provider='Hongyukeji\LaravelSettings\SettingsServiceProvider'
 ```
 
+```shell
+$ php artisan php artisan settings:create-table
+```
+
+```shell
+$ php artisan migrate
+```
+
 ## Usage
 
 > [edvinaskrucas/settings](https://github.com/edvinaskrucas/settings)
