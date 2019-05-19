@@ -46,8 +46,5 @@ class KeyGenerator implements KeyGeneratorContract
     public function generate($key, Context $context = null)
     {
         return $key . $this->serializer->serialize($context);
-        //return $key;
-        //return md5($key.$this->serializer->serialize($context));
-
     }
 }
