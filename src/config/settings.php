@@ -43,7 +43,7 @@ return [
     | If it is enabled various settings related events will be fired.
     |
     */
-    'events' => true,
+    'events' => env('SETTINGS_EVENTS', true),
 
     /*
     |--------------------------------------------------------------------------
