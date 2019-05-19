@@ -1,5 +1,5 @@
 {
-    "name": "hongyukeji\/laravel-settings",
+    "name": "hongyukeji/laravel-settings",
     "description": "Package description here.",
     "license": "MIT",
     "authors": [
@@ -14,7 +14,10 @@
     "autoload": {
         "psr-4": {
             "Hongyukeji\\LaravelSettings\\": "src"
-        }
+        },
+        "files": [
+            "src/helpers.php"
+        ]
     },
     "extra": {
         "laravel": {
