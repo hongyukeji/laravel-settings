@@ -82,7 +82,7 @@ return [
     |--------------------------------------------------------------------------
     |
     | Context serializer serializes context.
-    | It is used with "Krucas\Settings\KeyGenerators\KeyGenerator" class.
+    | It is used with "Hongyukeji\LaravelSettings\KeyGenerators\KeyGenerator" class.
     |
     */
     'context_serializer' => \Hongyukeji\LaravelSettings\Settings\ContextSerializer::class,

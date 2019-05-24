@@ -15,7 +15,7 @@
 
 namespace Hongyukeji\LaravelSettings\Settings;
 
-use Krucas\Settings\Contracts\ValueSerializer as ValueSerializerContract;
+use Hongyukeji\LaravelSettings\Contracts\ValueSerializer as ValueSerializerContract;
 
 class ValueSerializer implements ValueSerializerContract
 {

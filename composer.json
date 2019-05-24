@@ -1,30 +1,45 @@
 {
-    "name": "hongyukeji/laravel-settings",
-    "description": "Package description here.",
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "shadow",
-            "email": "admin@hongyuvip.com"
-        }
-    ],
-    "require": {
-        "edvinaskrucas/settings": "^2.0"
-    },
-    "autoload": {
-        "psr-4": {
-            "Hongyukeji\\LaravelSettings\\": "src"
-        }
-    },
-    "extra": {
-        "laravel": {
-            "providers": [
-                "Hongyukeji\\LaravelSettings\\SettingsServiceProvider",
-                "Krucas\\Settings\\Providers\\SettingsServiceProvider"
-            ],
-            "aliases": {
-                "Settings": "Krucas\\Settings\\Facades\\Settings"
-            }
-        }
+  "name": "hongyukeji/laravel-settings",
+  "keywords": [
+    "settings",
+    "persistent settings",
+    "laravel"
+  ],
+  "description": "Persistent settings package for Laravel framework.",
+  "authors": [
+    {
+      "name": "shadow",
+      "email": "admin@hongyuvip.com"
     }
+  ],
+  "license": "MIT",
+  "require": {
+    "php": "^5.5|^7.0",
+    "illuminate/support": "^5.2",
+    "illuminate/console": "^5.2",
+    "illuminate/database": "^5.2",
+    "illuminate/filesystem": "^5.2"
+  },
+  "require-dev": {
+    "mockery/mockery": "0.9.*"
+  },
+  "autoload": {
+    "psr-0": {
+      "Hongyukeji\\LaravelSettings\\": "src/"
+    },
+    "files": [
+      "src/helpers.php"
+    ]
+  },
+  "minimum-stability": "dev",
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Hongyukeji\\LaravelSettings\\Providers\\SettingsServiceProvider"
+      ],
+      "aliases": {
+        "Settings": "Hongyukeji\\LaravelSettings\\Facades\\Settings"
+      }
+    }
+  }
 }
