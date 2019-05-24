@@ -1,6 +1,6 @@
 <h1 align="center"> laravel-settings </h1>
 
-<p align="center"> .</p>
+<p align="center"> laravel 设置扩展.</p>
 
 
 ## Installing
