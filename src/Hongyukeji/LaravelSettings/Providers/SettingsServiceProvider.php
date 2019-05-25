@@ -32,7 +32,10 @@ class SettingsServiceProvider extends ServiceProvider
         );
 
         if (count($override) > 0) {
-            $this->overrideConfig($override, $config, $settings, $dispatcher);
+            try {
+                $this->overrideConfig($override, $config, $settings, $dispatcher);
+            } catch (\Exception $e) {
+            }
         }
     }
 
