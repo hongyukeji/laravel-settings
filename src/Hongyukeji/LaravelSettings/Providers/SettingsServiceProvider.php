@@ -56,8 +56,9 @@ class SettingsServiceProvider extends ServiceProvider
 
             $settingValue = $settings->get($settingKey);
             $configValue = $config->get($configKey);
+            $mergeValue = array_replace_recursive($configValue,$settingValue);
 
-            $config->set($configKey, $settingValue);
+            $config->set($configKey, $mergeValue);
 
             $dispatcher->fire("settings.override: {$configKey}", [
                 $configKey, $configValue, $settingKey, $settingValue
