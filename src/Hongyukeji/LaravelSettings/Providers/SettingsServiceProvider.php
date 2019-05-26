@@ -56,7 +56,12 @@ class SettingsServiceProvider extends ServiceProvider
 
             $settingValue = $settings->get($settingKey);
             $configValue = $config->get($configKey);
-            $mergeValue = array_replace_recursive($configValue ?: [],array_filter_recursive($settingValue));
+
+            if (config('settings.array_filter_null_value')) {
+                $mergeValue = array_replace_recursive($configValue ?: [], array_filter_recursive($settingValue));
+            } else {
+                $mergeValue = array_replace_recursive($configValue ?: [], $settingValue);
+            }
 
             $config->set($configKey, $mergeValue);
 
