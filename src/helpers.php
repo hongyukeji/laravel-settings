@@ -36,3 +36,29 @@ if (!function_exists('settings')) {
         return $settings->get($key, $default);
     }
 }
+
+if (!function_exists('array_filter_recursive')) {
+
+    /**
+     * array_filter_recursive 清除多维数组里面的空值
+     * @param array $arr
+     * @return array
+     * @author   liuml
+     * @DateTime 2018/12/3  11:27
+     */
+    function array_filter_recursive(array &$arr)
+    {
+        if (count($arr) < 1) {
+            return [];
+        }
+        foreach ($arr as $k => $v) {
+            if (is_array($v)) {
+                $arr[$k] = array_filter_recursive($v);
+            }
+            if (is_null($arr[$k]) && $arr[$k] == '') {
+                unset($arr[$k]);
+            }
+        }
+        return $arr;
+    }
+}
