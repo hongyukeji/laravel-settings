@@ -47,10 +47,10 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Enable / Disable 过滤空值
+    | Enable / Disable array filter null value
     |--------------------------------------------------------------------------
     |
-    | 数组过滤空值
+    | If turned on, the array filters null values.
     |
     */
     'array_filter_null_value' => false,
