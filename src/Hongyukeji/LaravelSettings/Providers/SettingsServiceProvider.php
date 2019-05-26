@@ -61,7 +61,7 @@ class SettingsServiceProvider extends ServiceProvider
             $config->set($configKey, $mergeValue);
 
             $dispatcher->fire("settings.override: {$configKey}", [
-                $configKey, $configValue, $settingKey, $settingValue
+                $configKey, $configValue, $settingKey, $mergeValue
             ]);
         }
     }
