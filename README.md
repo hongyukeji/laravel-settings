@@ -10,7 +10,7 @@ $ composer require hongyukeji/laravel-settings
 ```
 
 ```shell
-php artisan vendor:publish --provider='Hongyukeji\LaravelSettings\Providers\SettingsServiceProvider'
+php artisan vendor:publish --provider="Hongyukeji\LaravelSettings\Providers\SettingsServiceProvider"
 ```
 
 ```shell
