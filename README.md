@@ -2,6 +2,12 @@
 
 <p align="center"> laravel 系统设置扩展.</p>
 
+### Version matrix
+
+| Laravel Version       | Package version          |
+| --------------------- | ------------------------ |
+| 5.5, 5.6 , 5.7        | 1.0.*                    |
+| 5.8                   | 1.2.*                    |
 
 ## Installing
 
