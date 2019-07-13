@@ -24,6 +24,10 @@ class SettingsServiceProvider extends ServiceProvider
 
         $override = $config->get('settings.override', []);
 
+        if($config->get('settings.override_all_config', false)){
+            $override = array_replace_recursive(san_config_dir_files(), $override);
+        }
+
         $dispatcher->listen(
             'settings.override: app.timezone',
             function ($configKey, $configValue, $settingKey, $settingValue) {
@@ -31,7 +35,7 @@ class SettingsServiceProvider extends ServiceProvider
             }
         );
 
-        if (count($override) > 0) {
+        if (isset($override) && count($override) > 0) {
             try {
                 $this->overrideConfig($override, $config, $settings, $dispatcher);
             } catch (\Exception $e) {
@@ -60,7 +64,7 @@ class SettingsServiceProvider extends ServiceProvider
             if (config('settings.array_filter_null_value', false)) {
                 $mergeValue = array_replace_recursive($configValue ?: [], array_filter_recursive($settingValue));
             } else {
-                $mergeValue = array_replace_recursive($configValue ?: [], $settingValue);
+                $mergeValue = array_replace_recursive($configValue ?: [], (array)$settingValue);
             }
 
             $config->set($configKey, $mergeValue);

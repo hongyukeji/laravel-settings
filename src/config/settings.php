@@ -121,8 +121,8 @@ return [
     |
     */
 
-    'override' => [
+    'override' => [],
 
-    ],
+    'override_all_config' => false,
 
 ];

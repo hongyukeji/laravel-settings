@@ -62,3 +62,19 @@ if (!function_exists('array_filter_recursive')) {
         return $arr;
     }
 }
+
+if (!function_exists('san_config_dir_files')) {
+    /*
+     * 扫描配置文件目录中所有文件
+     */
+    function san_config_dir_files($path = '', $cut_suffix = '.php')
+    {
+        $path or $path = config_path();
+        $override = [];
+        foreach (array_diff(scandir(config_path()), ['.', '..']) as $file) {
+            $config_key = substr($file, 0, strpos($file, $cut_suffix));
+            $override[$config_key] = $config_key;
+        }
+        return $override;
+    }
+}
