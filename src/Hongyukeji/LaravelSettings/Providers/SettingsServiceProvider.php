@@ -24,8 +24,14 @@ class SettingsServiceProvider extends ServiceProvider
 
         $override = $config->get('settings.override', []);
 
-        if($config->get('settings.override_all_config', false)){
-            $override = array_replace_recursive(san_config_dir_files(), $override);
+        if ($config->get('settings.override_all_config', false)) {
+            try {
+                $keys = $settings->getRepository()->getKeys()->toArray();
+                $format_keys = array_combine($keys, $keys);
+            } catch (\Exception $e) {
+                $format_keys = [];
+            }
+            $override = array_replace_recursive(san_config_dir_files(), $format_keys, $override);
         }
 
         $dispatcher->listen(
@@ -58,13 +64,13 @@ class SettingsServiceProvider extends ServiceProvider
 
             $dispatcher->dispatch("settings.overriding: {$configKey}", [$configKey, $settingKey]);
 
-            $settingValue = $settings->get($settingKey);
+            $settingValue = (array)$settings->get($settingKey);
             $configValue = $config->get($configKey);
 
             if (config('settings.array_filter_null_value', false)) {
                 $mergeValue = array_replace_recursive($configValue ?: [], array_filter_recursive($settingValue));
             } else {
-                $mergeValue = array_replace_recursive($configValue ?: [], (array)$settingValue);
+                $mergeValue = array_replace_recursive($configValue ?: [], $settingValue);
             }
 
             $config->set($configKey, $mergeValue);

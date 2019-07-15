@@ -58,6 +58,17 @@ class DatabaseRepository implements Repository
     }
 
     /**
+     * Get the specified key array value.
+     *
+     * @return array
+     */
+    public function getKeys()
+    {
+        $keys = $this->table()->select('key')->pluck('key');
+        return is_null($keys) ? [] : $keys;
+    }
+
+    /**
      * Set a given setting value.
      *
      * @param string $key
