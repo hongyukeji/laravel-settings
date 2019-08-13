@@ -26,7 +26,7 @@ if (!function_exists('settings')) {
                 }
                 $settings->set($k, $v);
             }
-            return;
+            return true;
         }
 
         if ($context instanceof \Hongyukeji\LaravelSettings\Context) {
