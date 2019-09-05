@@ -15,10 +15,10 @@
   "license": "MIT",
   "require": {
     "php": "^5.5|^7.0",
-    "illuminate/support": "^5.2",
-    "illuminate/console": "^5.2",
-    "illuminate/database": "^5.2",
-    "illuminate/filesystem": "^5.2"
+    "illuminate/support": "^5.2 || ^6.*",
+    "illuminate/console": "^5.2 || ^6.*",
+    "illuminate/database": "^5.2 || ^6.*",
+    "illuminate/filesystem": "^5.2 || ^6.*"
   },
   "require-dev": {
     "mockery/mockery": "0.9.*"
