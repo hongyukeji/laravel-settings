@@ -384,6 +384,12 @@ class Settings implements Repository
         $this->fire('forget', $key, [$key]);
 
         $this->context(null);
+
+        try {
+            \Illuminate\Support\Facades\Artisan::call('config:clear');
+        } catch (\Exception $e) {
+            // config clear error !
+        }
     }
 
     /**
