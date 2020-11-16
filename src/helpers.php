@@ -37,6 +37,55 @@ if (!function_exists('settings')) {
     }
 }
 
+if (!function_exists('setting')) {
+    /**
+     * 使用「.」符号从深度嵌套的数组中根据指定键检索值
+     *
+     * Get / set the specified setting value.
+     *
+     * If an array is passed as the key, we will assume you want to set an array of values.
+     *
+     * @param array|string $key
+     * @param mixed $default
+     * @param null $context
+     * @return mixed
+     */
+    function setting($key = null, $default = null, $context = null)
+    {
+        $settings = app('settings');
+
+        if (is_null($key)) {
+            return $settings;
+        }
+
+        if (is_array($key)) {
+            foreach ($key as $k => $v) {
+                if ($default instanceof \Hongyukeji\LaravelSettings\Context) {
+                    $settings->context($default);
+                }
+                $settings->set($k, $v);
+            }
+            return true;
+        }
+
+        if ($context instanceof \Hongyukeji\LaravelSettings\Context) {
+            $settings->context($context);
+        }
+
+        $key_arr = explode('.', $key);
+        if (count($key_arr) > 1) {
+            $primary_key = $key_arr[0];
+            try {
+                return \Illuminate\Support\Arr::get($settings->get($primary_key, $default), \Illuminate\Support\Str::after($key, "{$primary_key}.")) ?? $default;
+            } catch (Exception $e) {
+                return $default;
+            }
+        }
+
+        return $settings->get($key, $default);
+    }
+}
+
 if (!function_exists('array_filter_recursive')) {
 
     /**
